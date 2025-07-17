@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Weather Dashboard</h1>
+            <p class="text-gray-600">Get real-time weather updates for any location</p>
+        </header>
+
+        <!-- Search and Unit Toggle -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div class="relative w-full md:w-96">
+                <input type="text" id="search-input" placeholder="Search for a city..."
+                    class="search-input w-full px-4 py-3 rounded-full border border-gray-300 focus:border-blue-500 transition-all duration-300 pr-12">
+                <button id="search-btn"
+                    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="flex items-center bg-gray-200 rounded-full p-1">
+                <button id="celsius-btn" class="temperature-toggle px-4 py-2 rounded-full active">°C</button>
+                <button id="fahrenheit-btn" class="temperature-toggle px-4 py-2 rounded-full">°F</button>
+            </div>
+        </div>
+
+        <!-- Current Weather -->
+        <div id="current-weather" class="bg-white rounded-2xl shadow-xl p-6 mb-8 transition-all duration-300 hidden">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <h2 id="location" class="text-2xl font-bold text-gray-800 mr-2"></h2>
+                        <span id="country" class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"></span>
+                    </div>
+                    <div class="flex items-center">
+                        <div id="current-icon" class="weather-icon w-20 h-20 mr-4"></div>
+                        <div>
+                            <div class="text-5xl font-bold text-gray-800 mb-1">
+                                <span id="current-temp"></span>
+                                <span class="text-3xl align-top">°</span>
+                                <span id="temp-unit" class="text-3xl">C</span>
+                            </div>
+                            <p id="current-desc" class="text-gray-600 capitalize"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mt-6 md:mt-0 md:gap-6">
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-wind text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">Wind</span>
+                        </div>
+                        <p id="wind-speed" class="text-lg font-semibold mt-1"></p>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-tint text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">Humidity</span>
+                        </div>
+                        <p id="humidity" class="text-lg font-semibold mt-1"></p>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-temperature-low text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">Feels Like</span>
+                        </div>
+                        <p id="feels-like" class="text-lg font-semibold mt-1"></p>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-eye text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">Visibility</span>
+                        </div>
+                        <p id="visibility" class="text-lg font-semibold mt-1"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast Weather -->
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">5-Day Forecast</h3>
+        <div id="forecast" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            <!-- Forecast cards will be inserted here -->
+        </div>
+
+        <!-- Recent Searches -->
+        <div id="recent-searches" class="bg-white rounded-2xl shadow-xl p-6 hidden">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Recent Searches</h3>
+            <div id="recent-list" class="flex flex-wrap gap-2">
+                <!-- Recent searches will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-12 hidden">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p class="text-gray-600">Loading weather data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg hidden" role="alert">
+            <div class="flex">
+                <div class="py-1">
+                    <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                </div>
+                <div>
+                    <p id="error-message" class="font-bold">Error</p>
+                    <p>Please try another location or check your internet connection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

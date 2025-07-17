@@ -1,0 +1,35 @@
+.weather-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .temperature-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .temperature-toggle.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .weather-icon {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        }
